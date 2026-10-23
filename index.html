@@ -1,0 +1,886 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0d1117">
+  <meta name="description" content="Bayan Course - Belajar bahasa Inggris online.">
+  <title>Bayan Course — English Learning</title>
+
+  <style>
+    :root {
+      --bg: #0d1117;
+      --panel: #161b22;
+      --panel2: #21262d;
+      --border: #30363d;
+      --text: #f0f6fc;
+      --muted: #9198a1;
+      --blue: #79a6f6;
+      --green: #238636;
+      --red: #f85149;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI",
+        sans-serif;
+      line-height: 1.6;
+    }
+
+    button, input { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container {
+      width: min(100% - 32px, 1050px);
+      margin-inline: auto;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      background: #010409;
+    }
+
+    .nav {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text);
+      font-size: 18px;
+      font-weight: 750;
+    }
+
+    .brand-icon {
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background: #1f6feb;
+      color: white;
+      font-weight: 800;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 9px 15px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      background: var(--panel2);
+      color: var(--text);
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .button:hover { filter: brightness(1.15); }
+    .button:disabled { opacity: .6; cursor: wait; }
+
+    .primary {
+      background: var(--green);
+      border-color: #2ea043;
+      color: white;
+    }
+
+    .outline { background: transparent; }
+    .danger { color: #ff7b72; }
+
+    .hero {
+      padding: 56px 0 36px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 5px 11px;
+      border: 1px solid #1f6feb;
+      border-radius: 30px;
+      color: #79c0ff;
+      background: #0d1e36;
+      font-size: 13px;
+    }
+
+    h1 {
+      margin: 18px 0 12px;
+      font-size: clamp(30px, 7vw, 48px);
+      line-height: 1.15;
+      letter-spacing: -1.5px;
+    }
+
+    .hero p {
+      max-width: 600px;
+      margin: 0 auto 22px;
+      color: var(--muted);
+    }
+
+    .section { padding: 24px 0 48px; }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    h2 { font-size: 23px; margin: 0; }
+    h3 { font-size: 18px; margin: 0; }
+
+    .muted { color: var(--muted); }
+    .small { font-size: 13px; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      min-width: 0;
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--panel);
+    }
+
+    .course-icon {
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      margin-bottom: 17px;
+      border: 1px solid #30363d;
+      border-radius: 10px;
+      background: #0d1e36;
+      font-size: 23px;
+    }
+
+    .course-desc {
+      min-height: 70px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 15px 0;
+    }
+
+    .tag {
+      padding: 3px 8px;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .card .button { width: 100%; }
+
+    .auth-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .auth-card {
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--panel);
+    }
+
+    .auth-card h2 { margin-bottom: 6px; }
+
+    .field { margin-top: 17px; }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    input {
+      width: 100%;
+      min-height: 44px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      outline: none;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    input:focus {
+      border-color: #2f81f7;
+      box-shadow: 0 0 0 3px #1f6feb40;
+    }
+
+    .auth-card form > .button {
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .auth-links {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 17px;
+      font-size: 13px;
+    }
+
+    .notice {
+      display: none;
+      padding: 12px;
+      margin: 15px 0 0;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      overflow-wrap: anywhere;
+      font-size: 14px;
+    }
+
+    .notice.show { display: block; }
+    .notice.error { color: #ff7b72; border-color: #f85149; }
+    .notice.success { color: #3fb950; border-color: #238636; }
+
+    .dashboard {
+      display: none;
+      margin-bottom: 24px;
+    }
+
+    .dashboard.show { display: block; }
+
+    .dashboard-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .enrollment {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    footer {
+      padding: 25px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 700px) {
+      .grid { grid-template-columns: 1fr; }
+      .auth-wrap { grid-template-columns: 1fr; }
+      .hero { padding-top: 42px; }
+      .course-desc { min-height: 0; }
+      .nav { min-height: 62px; }
+      .brand { font-size: 16px; }
+      .nav-actions .button { padding: 8px 10px; }
+      .section-heading { align-items: flex-start; }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      html { scroll-behavior: smooth; }
+      .card, .button { transition: filter .15s ease; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container nav">
+      <a href="#" class="brand">
+        <span class="brand-icon">B</span>
+        Bayan Course
+      </a>
+
+      <div class="nav-actions">
+        <a class="button outline" href="#courses">Kursus</a>
+        <button id="navAuth" class="button primary" type="button">
+          Login
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <span class="eyebrow">ENGLISH LEARNING PLATFORM</span>
+      <h1>Belajar Bahasa Inggris,<br>Mulai dari Sini.</h1>
+      <p>
+        Kembangkan kemampuan grammar, speaking, dan academic
+        writing melalui program belajar yang terstruktur.
+      </p>
+      <a class="button primary" href="#courses">Jelajahi Kursus →</a>
+    </section>
+
+    <section id="dashboard" class="dashboard">
+      <div class="card">
+        <div class="dashboard-top">
+          <div>
+            <p class="muted small">DASHBOARD SISWA</p>
+            <h2>Selamat datang!</h2>
+            <p id="userEmail" class="muted"></p>
+          </div>
+          <button id="logoutBtn" class="button" type="button">
+            Logout
+          </button>
+        </div>
+
+        <div class="enrollment">
+          <h3>Kursus Saya</h3>
+          <p class="muted small">
+            Kursus yang kamu pilih akan tampil di sini.
+          </p>
+          <div id="myCourses" class="grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="authSection" class="section">
+      <div class="auth-wrap">
+        <div class="auth-card">
+          <h2 id="authTitle">Login akun</h2>
+          <p id="authDescription" class="muted small">
+            Masuk untuk mendaftar kursus dan melihat dashboard.
+          </p>
+
+          <form id="authForm">
+            <div id="nameField" class="field hidden">
+              <label for="fullName">Nama lengkap</label>
+              <input id="fullName" type="text"
+                maxlength="80" autocomplete="name"
+                placeholder="Nama kamu">
+            </div>
+
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" type="email" required
+                maxlength="254" autocomplete="email"
+                placeholder="nama@email.com">
+            </div>
+
+            <div class="field">
+              <label for="password">Password</label>
+              <input id="password" type="password" required
+                minlength="8" maxlength="128"
+                autocomplete="current-password"
+                placeholder="Minimal 8 karakter">
+            </div>
+
+            <button id="submitAuth" class="button primary"
+              type="submit">Login</button>
+          </form>
+
+          <div class="auth-links">
+            <a href="#" id="toggleAuth">Belum punya akun? Daftar</a>
+            <a href="#" id="forgotPassword">Lupa password?</a>
+          </div>
+
+          <div id="authNotice" class="notice"
+            role="status" aria-live="polite"></div>
+        </div>
+
+        <div class="auth-card">
+          <h2>Belajar dengan terarah</h2>
+          <p class="muted">
+            Pilih program yang sesuai dengan kebutuhanmu.
+            Setelah login, kamu bisa mendaftar dan melihat
+            kursus yang telah kamu pilih.
+          </p>
+          <div class="tags">
+            <span class="tag">Grammar</span>
+            <span class="tag">Speaking</span>
+            <span class="tag">Academic Writing</span>
+            <span class="tag">Online Learning</span>
+          </div>
+          <p class="muted small">
+            Pembuatan akun dan data pendaftaran terhubung
+            dengan database Supabase.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="courses" class="section">
+      <div class="section-heading">
+        <div>
+          <h2>Jelajahi Kursus</h2>
+          <p class="muted small">Temukan kelas untuk meningkatkan kemampuanmu.</p>
+        </div>
+      </div>
+      <div id="courseList" class="grid">
+        <p class="muted">Memuat daftar kursus...</p>
+      </div>
+      <div id="courseNotice" class="notice"
+        role="status" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © <span id="year"></span> Bayan Course. Learn something new.
+    </div>
+  </footer>
+
+  <!-- SDK Supabase untuk browser -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    // =========================================
+    // 1. KONFIGURASI SUPABASE
+    // Ganti kedua nilai di bawah dengan milikmu.
+    // Gunakan publishable key atau anon key.
+    // JANGAN gunakan service_role / secret key.
+    // =========================================
+
+    const SUPABASE_URL = "TEMPEL_PROJECT_URL_DI_SINI";
+    const SUPABASE_KEY = "TEMPEL_PUBLISHABLE_KEY_DI_SINI";
+
+    const configured =
+      SUPABASE_URL.startsWith("https://") &&
+      !SUPABASE_URL.includes("TEMPEL_") &&
+      !SUPABASE_KEY.includes("TEMPEL_") &&
+      SUPABASE_KEY.length > 20;
+
+    let db = null;
+    let currentUser = null;
+    let courses = [];
+    let enrolledIds = new Set();
+    let authMode = "login";
+    let busy = false;
+
+    const $ = id => document.getElementById(id);
+
+    $("year").textContent = new Date().getFullYear();
+
+    function notice(id, message, type = "success") {
+      const el = $(id);
+      el.textContent = message;
+      el.className = "notice show " + type;
+    }
+
+    function clearNotice(id) {
+      $(id).textContent = "";
+      $(id).className = "notice";
+    }
+
+    function setBusy(value) {
+      busy = value;
+      $("submitAuth").disabled = value;
+      $("submitAuth").textContent = value
+        ? "Memproses..."
+        : authMode === "login" ? "Login" : "Buat akun";
+    }
+
+    function setAuthMode(mode) {
+      authMode = mode;
+      const registering = mode === "register";
+
+      $("authTitle").textContent = registering
+        ? "Buat akun" : "Login akun";
+
+      $("authDescription").textContent = registering
+        ? "Daftar untuk mulai memilih kursus."
+        : "Masuk untuk mengelola kursusmu.";
+
+      $("nameField").classList.toggle("hidden", !registering);
+      $("fullName").required = registering;
+      $("password").autocomplete = registering
+        ? "new-password" : "current-password";
+
+      $("submitAuth").textContent = registering
+        ? "Buat akun" : "Login";
+
+      $("toggleAuth").textContent = registering
+        ? "Sudah punya akun? Login"
+        : "Belum punya akun? Daftar";
+
+      $("forgotPassword").classList.toggle("hidden", registering);
+      clearNotice("authNotice");
+    }
+
+    function showAuth() {
+      $("authSection").classList.remove("hidden");
+      $("dashboard").classList.remove("show");
+      $("navAuth").textContent = "Login";
+    }
+
+    function showDashboard() {
+      $("authSection").classList.add("hidden");
+      $("dashboard").classList.add("show");
+      $("navAuth").textContent = "Akun";
+      $("userEmail").textContent = currentUser?.email || "";
+    }
+
+    $("navAuth").addEventListener("click", () => {
+      if (currentUser) {
+        $("dashboard").scrollIntoView({ behavior: "smooth" });
+      } else {
+        $("authSection").scrollIntoView({ behavior: "smooth" });
+      }
+    });
+
+    $("toggleAuth").addEventListener("click", event => {
+      event.preventDefault();
+      setAuthMode(authMode === "login" ? "register" : "login");
+    });
+
+    $("forgotPassword").addEventListener("click", async event => {
+      event.preventDefault();
+      clearNotice("authNotice");
+
+      if (!db) return notice(
+        "authNotice", "Konfigurasi Supabase belum diisi.", "error"
+      );
+
+      const email = $("email").value.trim();
+      if (!email) return notice(
+        "authNotice", "Masukkan email terlebih dahulu.", "error"
+      );
+
+      const { error } = await db.auth.resetPasswordForEmail(email, {
+        redirectTo: window.location.origin
+      });
+
+      if (error) {
+        notice("authNotice", error.message, "error");
+      } else {
+        notice(
+          "authNotice",
+          "Jika email terdaftar, instruksi pemulihan akan dikirim. Periksa inbox dan spam."
+        );
+      }
+    });
+
+    // =========================================
+    // 2. REGISTER DAN LOGIN
+    // =========================================
+
+    $("authForm").addEventListener("submit", async event => {
+      event.preventDefault();
+      if (busy) return;
+
+      if (!db) return notice(
+        "authNotice",
+        "Isi URL dan publishable key Supabase di kode terlebih dahulu.",
+        "error"
+      );
+
+      const email = $("email").value.trim();
+      const password = $("password").value;
+      const fullName = $("fullName").value.trim();
+
+      if (authMode === "register" && !fullName) {
+        return notice("authNotice", "Nama lengkap wajib diisi.", "error");
+      }
+
+      setBusy(true);
+      clearNotice("authNotice");
+
+      try {
+        if (authMode === "register") {
+          const { data, error } = await db.auth.signUp({
+            email,
+            password,
+            options: {
+              data: { full_name: fullName },
+              emailRedirectTo: window.location.origin
+            }
+          });
+
+          if (error) throw error;
+
+          if (data.session) {
+            notice("authNotice", "Akun berhasil dibuat.");
+          } else {
+            notice(
+              "authNotice",
+              "Pendaftaran diterima. Buka email untuk memverifikasi akun, lalu login."
+            );
+            setAuthMode("login");
+          }
+        } else {
+          const { error } = await db.auth.signInWithPassword({
+            email, password
+          });
+          if (error) throw error;
+        }
+      } catch (error) {
+        notice("authNotice", error.message || "Terjadi kesalahan.", "error");
+      } finally {
+        setBusy(false);
+      }
+    });
+
+    // =========================================
+    // 3. KATALOG KURSUS
+    // =========================================
+
+    function courseCard(course, enrolled = false, dashboard = false) {
+      const icons = ["📘", "🗣️", "✍️", "🎓"];
+      const icon = icons[(Number(course.id) - 1) % icons.length] || "📚";
+
+      const buttonText = dashboard
+        ? "Batalkan pendaftaran"
+        : enrolled ? "Sudah terdaftar" : "Daftar kursus";
+
+      const buttonClass = dashboard ? "button danger" :
+        enrolled ? "button" : "button primary";
+
+      return `
+        <article class="card">
+          <div class="course-icon">${icon}</div>
+          <h3>${escapeHTML(course.title)}</h3>
+          <p class="course-desc">${escapeHTML(course.description)}</p>
+          <div class="tags">
+            <span class="tag">${escapeHTML(course.level)}</span>
+            <span class="tag">${escapeHTML(course.duration)}</span>
+          </div>
+          <button class="${buttonClass}"
+            data-course="${Number(course.id)}"
+            data-action="${dashboard ? "cancel" : "enroll"}"
+            ${enrolled && !dashboard ? "disabled" : ""}>
+            ${buttonText}
+          </button>
+        </article>
+      `;
+    }
+
+    // Lindungi teks database saat ditampilkan sebagai HTML.
+    function escapeHTML(value) {
+      return String(value).replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      })[char]);
+    }
+
+    async function loadCourses() {
+      if (!db) {
+        $("courseList").innerHTML =
+          '<p class="muted">Isi konfigurasi Supabase untuk memuat kursus.</p>';
+        return;
+      }
+
+      const { data, error } = await db
+        .from("courses")
+        .select("id,title,description,level,duration")
+        .order("id");
+
+      if (error) {
+        $("courseList").innerHTML = "";
+        notice("courseNotice", "Gagal memuat kursus: " + error.message, "error");
+        return;
+      }
+
+      courses = data || [];
+      renderCourses();
+    }
+
+    function renderCourses() {
+      $("courseList").innerHTML = courses.length
+        ? courses.map(course =>
+            courseCard(course, enrolledIds.has(Number(course.id)))
+          ).join("")
+        : '<p class="muted">Belum ada kursus tersedia.</p>';
+
+      renderMyCourses();
+    }
+
+    function renderMyCourses() {
+      const myCourses = courses.filter(course =>
+        enrolledIds.has(Number(course.id))
+      );
+
+      $("myCourses").innerHTML = myCourses.length
+        ? myCourses.map(course => courseCard(course, true, true)).join("")
+        : '<p class="muted">Kamu belum mendaftar kursus.</p>';
+    }
+
+    async function loadEnrollments() {
+      enrolledIds = new Set();
+
+      if (currentUser) {
+        const { data, error } = await db
+          .from("enrollments")
+          .select("course_id")
+          .eq("user_id", currentUser.id);
+
+        if (error) {
+          notice(
+            "courseNotice",
+            "Gagal membaca pendaftaran: " + error.message,
+            "error"
+          );
+        } else {
+          enrolledIds = new Set(
+            (data || []).map(item => Number(item.course_id))
+          );
+        }
+      }
+
+      renderCourses();
+    }
+
+    $("courseList").addEventListener("click", handleCourseAction);
+    $("myCourses").addEventListener("click", handleCourseAction);
+
+    async function handleCourseAction(event) {
+      const button = event.target.closest("button[data-course]");
+      if (!button) return;
+
+      if (!currentUser) {
+        setAuthMode("login");
+        notice(
+          "authNotice",
+          "Login terlebih dahulu untuk mendaftar kursus."
+        );
+        $("authSection").scrollIntoView({ behavior: "smooth" });
+        return;
+      }
+
+      const courseId = Number(button.dataset.course);
+      const action = button.dataset.action;
+      button.disabled = true;
+      clearNotice("courseNotice");
+
+      try {
+        if (action === "enroll") {
+          const { error } = await db.from("enrollments").insert({
+            user_id: currentUser.id,
+            course_id: courseId
+          });
+          if (error) throw error;
+
+          notice("courseNotice", "Pendaftaran kursus berhasil.");
+        } else {
+          const { error } = await db.from("enrollments")
+            .delete()
+            .eq("user_id", currentUser.id)
+            .eq("course_id", courseId);
+
+          if (error) throw error;
+          notice("courseNotice", "Pendaftaran kursus dibatalkan.");
+        }
+
+        await loadEnrollments();
+      } catch (error) {
+        notice(
+          "courseNotice",
+          "Operasi gagal: " + error.message,
+          "error"
+        );
+        button.disabled = false;
+      }
+    }
+
+    // =========================================
+    // 4. LOGOUT DAN STATUS LOGIN
+    // =========================================
+
+    $("logoutBtn").addEventListener("click", async () => {
+      if (!db) return;
+      const { error } = await db.auth.signOut();
+
+      if (error) {
+        notice("courseNotice", error.message, "error");
+      }
+    });
+
+    async function applySession(session) {
+      currentUser = session?.user || null;
+
+      if (currentUser) {
+        showDashboard();
+        await loadEnrollments();
+      } else {
+        showAuth();
+        enrolledIds = new Set();
+        renderCourses();
+      }
+    }
+
+    // =========================================
+    // 5. MULAI APLIKASI
+    // =========================================
+
+    async function startApp() {
+      setAuthMode("login");
+
+      if (!configured || !window.supabase) {
+        $("courseList").innerHTML =
+          '<p class="muted">Konfigurasi Supabase belum lengkap.</p>';
+        showAuth();
+        notice(
+          "authNotice",
+          "Buka bagian KONFIGURASI SUPABASE dalam kode dan isi Project URL serta publishable key.",
+          "error"
+        );
+        return;
+      }
+
+      db = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+      await loadCourses();
+
+      db.auth.onAuthStateChange((_event, session) => {
+        // Jalankan operasi setelah callback autentikasi selesai.
+        setTimeout(() => applySession(session), 0);
+      });
+
+      const { data, error } = await db.auth.getSession();
+
+      if (error) {
+        notice("authNotice", error.message, "error");
+        showAuth();
+        return;
+      }
+
+      await applySession(data.session);
+    }
+
+    startApp();
+  </script>
+</body>
+</html>
